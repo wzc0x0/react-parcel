@@ -1,0 +1,18 @@
+{
+  "name": "react-parcel",
+  "version": "1.0.0",
+  "description": "let's go react",
+  "main": "index.js",
+  "author": "wzc0x0@gmail.com",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "parcel-bundler": "^1.5.1"
+  }
+}
