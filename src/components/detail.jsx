@@ -1,14 +1,13 @@
-/* import React , { Component } from "react";
+import React , { Component } from "react"
+import { Button } from "antd";
 
 export default class Detail extends Component {
   render() {
     return (
-      <h1>Hello!This is the detail page!</h1>
+      <div>
+        <h1>Hello!This is the detail page!</h1>
+        <Button>hello react</Button>
+      </div>
     )
   }
 }
- */
-import React from 'react'
-
-const Detail = () => <h1>Hello!This is the detail page!</h1>
-export default Detail
