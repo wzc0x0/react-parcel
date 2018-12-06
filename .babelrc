@@ -1,4 +1,7 @@
 {
-    "presets": ["env", "react"],
-    "plugins": ["transform-runtime"]
+    "plugins": [
+        ["@babel/plugin-transform-runtime", {
+            "corejs": 2
+        }]
+    ]
 }
