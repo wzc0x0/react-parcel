@@ -1,0 +1,71 @@
+<template>
+  <div>
+    <chart v-if="loaded" :chartdata="chartdata" :options="options"/>
+    <div>
+      <a href="javascript:;">add</a>
+      <a href="javascript:;">remove</a>
+    </div>
+  </div>
+</template>
+<script>
+import chart from "../components/chart";
+
+export default {
+  data: () => ({
+    loaded: false,
+    chartdata: {
+      labels: [
+        "Eating",
+        "Drinking",
+        "Sleeping",
+        "Designing",
+        "Coding",
+        "Cycling",
+        "Running"
+      ],
+      datasets: [
+        {
+          label: "My First dataset",
+          backgroundColor: "rgba(179,181,198,0.2)",
+          borderColor: "rgba(179,181,198,1)",
+          pointBackgroundColor: "rgba(179,181,198,1)",
+          pointBorderColor: "#fff",
+          pointHoverBackgroundColor: "#fff",
+          pointHoverBorderColor: "rgba(179,181,198,1)",
+          data: [65, 59, 90, 81, 56, 55, 40]
+        },
+        {
+          label: "My Second dataset",
+          backgroundColor: "rgba(255,99,132,0.2)",
+          borderColor: "rgba(255,99,132,1)",
+          pointBackgroundColor: "rgba(255,99,132,1)",
+          pointBorderColor: "#fff",
+          pointHoverBackgroundColor: "#fff",
+          pointHoverBorderColor: "rgba(255,99,132,1)",
+          data: [28, 48, 40, 19, 96, 27, 100]
+        }
+      ]
+    },
+    options: {
+      layout: {
+        padding: {
+          left: 10,
+          right: 0,
+          top: 0,
+          bottom: 0
+        }
+      },
+      responsive: true,
+      maintainAspectRatio: false
+    }
+  }),
+  components: {
+    chart
+  },
+  mounted() {
+    this.loaded = true;
+  }
+};
+</script>
+<style lang="less" scoped>
+</style>
