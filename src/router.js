@@ -1,11 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
-import upload from './components/upload.vue'
-import fullpage from './components/fullpage.vue'
-import chartWrapper from './view/ChartWrapper.vue'
-import inputMask from './view/InputMaskWrapper.vue'
-
 Vue.use(VueRouter)
 
 export default new VueRouter({
@@ -16,19 +11,28 @@ export default new VueRouter({
         },
         {
             path: '/upload',
-            component: upload
+            component: () =>
+                import ('./components/upload.vue')
         },
         {
             path: '/fullpage',
-            component: fullpage
+            component: () =>
+                import ('./components/fullpage.vue')
         },
         {
             path: '/chart',
-            component: chartWrapper
+            component: () =>
+                import ('./view/ChartWrapper.vue')
         },
         {
             path: '/inputMask',
-            component: inputMask
+            component: () =>
+                import ('./view/InputMaskWrapper.vue')
+        },
+        {
+            path: "/webWorker",
+            component: () =>
+                import ('./view/WebWorker.vue')
         }
     ]
 })
