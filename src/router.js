@@ -33,6 +33,11 @@ export default new VueRouter({
             path: "/webWorker",
             component: () =>
                 import ('./view/WebWorker.vue')
+        },
+        {
+            path: "/translate",
+            component: () =>
+                import ('./view/Translate.vue')
         }
     ]
 })
