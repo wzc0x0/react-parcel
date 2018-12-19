@@ -38,6 +38,11 @@ export default new VueRouter({
             path: "/translate",
             component: () =>
                 import ('./view/Translate.vue')
+        },
+        {
+            path: "/scratch",
+            component: () =>
+                import ('./view/ScratchCanvas.vue')
         }
     ]
 })

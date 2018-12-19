@@ -7,7 +7,7 @@
     "license": "MIT",
     "private": true,
     "scripts": {
-        "dev": "parcel index.html --open --no-autoinstall --no-cache",
+        "dev": "parcel index.html --open --no-autoinstall",
         "build": "parcel build index.html"
     },
     "dependencies": {
