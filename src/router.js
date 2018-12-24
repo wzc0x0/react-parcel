@@ -43,6 +43,11 @@ export default new VueRouter({
             path: "/progress",
             component: () =>
                 import ('./view/Progress.vue')
+        },
+        {
+            path: "/scratch",
+            component: () =>
+                import ('./view/ScratchCanvas.vue')
         }
     ]
 })
