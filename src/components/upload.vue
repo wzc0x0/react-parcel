@@ -54,14 +54,6 @@ export default {
         token =
           "tM193uNBWVubyf1od06tTI50euAd31tOOg3GXsA4:Un6QHl4ib8KO7m1PtP9MP6CZE9E=:eyJzY29wZSI6InRlc3QwMDEiLCJkZWFkbGluZSI6MTU0NDAwNTI2Nn0=",
         observable = qiniu.upload(file, key, token, putExtra, config);
-        console.time('start')
-
-      let a = await getFileHash(file)
-
-      console.log(a)
-      console.timeEnd('start')
-      return;
-
 
       this.subscription = observable.subscribe({
         next({ total }) {
