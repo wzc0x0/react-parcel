@@ -48,6 +48,16 @@ export default new VueRouter({
             path: "/scratch",
             component: () =>
                 import ('./view/ScratchCanvas.vue')
+        },
+        {
+            path: "/bootstrap",
+            component: () =>
+                import ('./view/BootstrapVue.vue')
+        },
+        {
+            path: "/jszip",
+            component: () =>
+                import ('./view/JSZip.vue')
         }
     ]
 })
