@@ -1,7 +1,12 @@
 <template>
   <div>
+    <transition name="fade">
+      <div v-show="!isHidden">
+        <h1>CPU Usage:{{cpuData}}%</h1>
+        <h1>Current WebPage Memory Usage:{{memoryData}}M</h1>
+      </div>
+    </transition>
     <button @click="download">download</button>
-    <h1>CPU Usage:{{cpuData}}%</h1>
   </div>
 </template>
 <script>
@@ -78,7 +83,9 @@ const detectUsageOfCPU = cb => {
 export default {
   data() {
     return {
+      isHidden: false,
       cpuData: null,
+      memoryData: null,
       assets: [
         {
           url:
@@ -130,12 +137,38 @@ export default {
     },
     showCPU(data) {
       this.cpuData = data;
+    },
+    detectPageShow() {
+      this.isHidden = document.hidden;
     }
   },
   created() {
     detectUsageOfCPU(_.throttle(this.showCPU, 1000));
+    if ("memory" in performance) {
+      setInterval(() => {
+        let { usedJSHeapSize } = performance.memory;
+        this.memoryData = (usedJSHeapSize / (1024 * 1024)).toFixed(1);
+      }, 1000);
+    }
+    document.addEventListener("visibilitychange", this.detectPageShow);
+  },
+  destroyed() {
+    document.removeEventListener("visibilitychange", this.detectPageShow);
+    //TODO
   }
 };
 </script>
 <style lang="less" scoped>
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.fade-enter-active {
+  animation: fade 1s;
+  animation-fill-mode: forwards;
+}
 </style>
