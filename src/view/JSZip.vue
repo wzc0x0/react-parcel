@@ -13,7 +13,8 @@
 const JSZip = require("jszip/dist/jszip.min");
 const saveAs = require("jszip/vendor/FileSaver");
 
-const _ = require("lodash");
+import { throttle } from "lodash-es";
+console.log(throttle)
 /* const downloader = url =>
   new Promise((resolve, reject) => {
     fetch(url).then(res => {
@@ -64,7 +65,10 @@ class DownloaderUpdateFile {
         .toString(36)
         .slice(2),
       now = new Date(),
-      time = `${now.getFullYear()}-${now.getMonth() + 1}-${now.getDate()}`;
+      add = value => (value.toString()[1] ? value : "0" + value),
+      time = `${now.getFullYear()}-${add(now.getMonth() + 1)}-${add(
+        now.getDate()
+      )}`;
     return random + "-" + time;
   }
 }
@@ -143,7 +147,7 @@ export default {
     }
   },
   created() {
-    detectUsageOfCPU(_.throttle(this.showCPU, 1000));
+    detectUsageOfCPU(throttle(this.showCPU, 1000));
     if ("memory" in performance) {
       setInterval(() => {
         let { usedJSHeapSize } = performance.memory;
