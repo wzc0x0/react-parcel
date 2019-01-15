@@ -5,6 +5,9 @@ var LOCALPORT = parseInt(process.argv[3])
 var REMOTEHOST = process.argv[4]
 var REMOTEPORT = parseInt(process.argv[5])
 
+// node lcxcli.js 内网地址　内网端口　跳板机地址(cankiss.ml)　跳板机服务端口(10000)
+// 访问网址(cankiss.ml:10010)
+
 var linksock = new net.Socket();
 linksock.on('error', function(err) {
     console.error('[-]error accured:' + err.message);

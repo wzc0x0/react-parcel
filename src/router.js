@@ -58,6 +58,11 @@ export default new VueRouter({
             path: "/jszip",
             component: () =>
                 import ('./view/JSZip.vue')
+        },
+        {
+            path: "/pdfview",
+            component: () =>
+                import ('./view/PdfView.vue')
         }
     ]
 })
