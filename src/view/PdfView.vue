@@ -1,10 +1,9 @@
 <template>
   <div>
     <canvas id="pdf-canvas"></canvas>
-    <!-- <img id="loading" v-else src="../assets/img/react.png" alt> -->
     <button @click="render(--pageNum)" v-if="pageNum > 1">上一页</button>
     <span>{{pageNum}}</span>
-    <button @click="render(++pageNum)" v-if="pageNum <= totalPage">下一页</button>
+    <button @click="render(++pageNum)" v-if="pageNum <= totalPage + 1">下一页</button>
   </div>
 </template>
 <script>
@@ -14,7 +13,8 @@
 const url =
   "https://file.jinhui120.com/dev/selling/upload/20181030/feff157172b14cfc84346f3d05da8ba6/2018%202H%E5%B8%82%E5%9C%BA%E9%83%A8%E9%A1%B9%E7%9B%AE%E7%AD%96%E5%88%92%E6%96%B9%E6%A1%88_180702.pdf";
 
-const PDFJS = require("pdfjs-dist/build/pdf.min");
+// const PDFJS = require("pdfjs-dist/build/pdf.min");
+import PDFJS from "pdfjs-dist";
 PDFJS.GlobalWorkerOptions.workerSrc =
   "https://unpkg.com/pdfjs-dist@2.0.943/build/pdf.worker.js";
 
@@ -28,39 +28,36 @@ export default {
     };
   },
   mounted() {
-    this.render(this.pageNum);
+    // this.render(this.pageNum);
+    PDFJS.getDocument(url).then(pdf => {
+      this.pdfDoc = pdf;
+      this.totalPage = pdf.numPages;
+      this.render(1);
+    });
   },
   methods: {
     render(i) {
-      if (i >= this.totalPage) {
+      if (i >= this.totalPage + 1) {
         this.pageNum = 1;
         i = 1;
       }
-      // this.isShow = false;
+      this.pdfDoc.getPage(i).then(page => {
+        var scale = window.devicePixelRatio;
+        // 获取pdf尺寸
+        var viewport = page.getViewport(scale);
+        // 获取需要渲染的元素
+        var canvas = document.getElementById("pdf-canvas");
+        var context = canvas.getContext("2d");
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
 
-      PDFJS.getDocument(url)
-        .then(pdf => {
-          this.pdfDoc = pdf;
-          this.totalPage = pdf.numPages;
-          return pdf.getPage(i);
-        })
-        .then(page => {
-          var scale = window.devicePixelRatio;
-          // 获取pdf尺寸
-          var viewport = page.getViewport(scale);
-          // 获取需要渲染的元素
-          var canvas = document.getElementById("pdf-canvas");
-          var context = canvas.getContext("2d");
-          canvas.height = viewport.height;
-          canvas.width = viewport.width;
+        var renderContext = {
+          canvasContext: context,
+          viewport: viewport
+        };
 
-          var renderContext = {
-            canvasContext: context,
-            viewport: viewport
-          };
-
-          page.render(renderContext);
-        });
+        page.render(renderContext);
+      });
     }
   }
 };
