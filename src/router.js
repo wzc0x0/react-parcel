@@ -63,6 +63,11 @@ export default new VueRouter({
             path: "/pdfview",
             component: () =>
                 import ('./view/PdfView.vue')
+        },
+        {
+            path: "/qrcode",
+            component: () =>
+                import ('./view/Qrcode.vue')
         }
     ]
 })
