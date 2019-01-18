@@ -12,9 +12,10 @@
 <script>
 const JSZip = require("jszip/dist/jszip.min");
 const saveAs = require("jszip/vendor/FileSaver");
-
+const streamSaver = require("streamsaver");
+console.log(streamSaver);
 import { throttle } from "lodash-es";
-console.log(throttle)
+import "screw-filereader";
 /* const downloader = url =>
   new Promise((resolve, reject) => {
     fetch(url).then(res => {
@@ -131,7 +132,9 @@ export default {
           )
           .then(
             blob => {
-              saveAs(blob, "sb.zip");
+              // saveAs(blob, "sb.zip");
+              let fileStream = streamSaver.createWriteStream("sb.zip");
+              blob.stream().pipeTo(fileStream);
             },
             err => {
               console.log(err);

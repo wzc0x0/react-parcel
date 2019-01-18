@@ -5030,6 +5030,11 @@ schema-utils@^0.4.0:
     ajv "^6.1.0"
     ajv-keywords "^3.1.0"
 
+screw-filereader@^1.4.3:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/screw-filereader/-/screw-filereader-1.4.3.tgz#94aad5466d243df58d3e1398efeaa6893d69487f"
+  integrity sha1-lKrVRm0kPfWNPhOY7+qmiT1pSH8=
+
 semver@^5.1.0, semver@^5.3.0, semver@^5.4.1, semver@^5.5.0:
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-5.5.0.tgz#dc4bbc7a6ca9d916dee5d43516f0092b58f7b8ab"
@@ -5299,6 +5304,11 @@ stream-http@^2.7.2:
     readable-stream "^2.3.3"
     to-arraybuffer "^1.0.0"
     xtend "^4.0.0"
+
+streamsaver@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/streamsaver/-/streamsaver-1.0.1.tgz#475d404973b5e6926a557f0e4cd8558a3520e07c"
+  integrity sha1-R11ASXO15pJqVX8OTNhVijUg4Hw=
 
 strict-uri-encode@^1.0.0:
   version "1.1.0"
