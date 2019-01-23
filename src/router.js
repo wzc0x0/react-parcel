@@ -68,6 +68,11 @@ export default new VueRouter({
             path: "/qrcode",
             component: () =>
                 import ('./view/Qrcode.vue')
+        },
+        {
+            path: "/drawCanvas",
+            component: () =>
+                import ('./view/drawCanvas.vue')
         }
     ]
 })
