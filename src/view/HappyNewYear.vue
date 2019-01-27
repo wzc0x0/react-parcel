@@ -16,6 +16,9 @@ export default {
       isShow: 1
     };
   },
+  metaInfo: {
+    title: "恭贺新春"
+  },
   mounted() {
     var canvas;
     var context;
