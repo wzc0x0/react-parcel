@@ -72,7 +72,44 @@ export default new VueRouter({
         {
             path: "/drawCanvas",
             component: () =>
-                import ('./view/drawCanvas.vue')
+                import ('./view/DrawCanvas.vue')
+        },
+        {
+            path: "/happyNewYear",
+            component: () =>
+                import ('./view/HappyNewYear.vue')
+        },
+        {
+            path: "/firework",
+            redirect: '1',
+            component: () =>
+                import ('./view/firework/Firework.vue'),
+            children: [{
+                    path: "1",
+                    component: () =>
+                        import ('./view/firework/Firework1.vue')
+                },
+                {
+                    path: "2",
+                    component: () =>
+                        import ('./view/firework/Firework2.vue')
+                },
+                {
+                    path: "3",
+                    component: () =>
+                        import ('./view/firework/Firework3.vue')
+                },
+                {
+                    path: "4",
+                    component: () =>
+                        import ('./view/firework/Firework4.vue')
+                },
+                {
+                    path: "particle",
+                    component: () =>
+                        import ('./view/firework/Particle.vue')
+                }
+            ]
         }
     ]
 })
