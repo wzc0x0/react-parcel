@@ -41,6 +41,7 @@
         "@vue/component-compiler-utils": "^2.3.0",
         "less": "^3.9.0",
         "parcel-bundler": "^1.11.0",
+        "typescript": "^3.3.3",
         "vue-template-compiler": "^2.5.17",
         "worker-loader": "^2.0.0"
     },
