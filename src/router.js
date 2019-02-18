@@ -80,6 +80,11 @@ export default new VueRouter({
                 import ('./view/HappyNewYear.vue')
         },
         {
+            path: "/instascan",
+            component: () =>
+                import ('./view/Instascan.vue')
+        },
+        {
             path: "/firework",
             redirect: '1',
             component: () =>

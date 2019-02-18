@@ -8,6 +8,7 @@
     "private": true,
     "scripts": {
         "dev": "parcel index.html --open --no-autoinstall --no-cache",
+        "devs": "parcel index.html --open --no-autoinstall --no-cache --cert local.crt --key local.key",
         "build": "parcel build index.html --no-source-maps "
     },
     "dependencies": {
@@ -15,6 +16,7 @@
         "bignumber.js": "^8.0.2",
         "bootstrap-vue": "^2.0.0-rc.11",
         "chart.js": "^2.7.3",
+        "instascan": "^1.0.0",
         "jszip": "^3.1.5",
         "lodash-es": "^4.17.11",
         "mathjs": "^5.4.1",
