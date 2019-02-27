@@ -85,6 +85,11 @@ export default new VueRouter({
                 import ('./view/Instascan.vue')
         },
         {
+            path: "/closeRefresh",
+            component: () =>
+                import ('./view/CloseRefresh.vue')
+        },
+        {
             path: "/firework",
             redirect: '1',
             component: () =>

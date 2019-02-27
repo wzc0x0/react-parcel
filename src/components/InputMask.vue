@@ -16,13 +16,29 @@
 <script>
 export default {
   data: () => ({
-    valueArr:[]
+    valueArr: []
   }),
   props: {
     num: {
       type: Number,
       default: 4
     }
+  },
+  created() {
+    window.addEventListener("resize", function() {
+      if (
+        document.activeElement.tagName === "INPUT" ||
+        document.activeElement.tagName === "TEXTAREA"
+      ) {
+        window.setTimeout(function() {
+          if ("scrollIntoView" in document.activeElement) {
+            document.activeElement.scrollIntoView();
+          } else {
+            document.activeElement.scrollIntoViewIfNeeded();
+          }
+        }, 0);
+      }
+    });
   },
   computed: {
     refsLen() {
@@ -39,7 +55,7 @@ export default {
 
       if (i === this.refsLen) {
         nextIpt.blur();
-        this.$emit("input-complete", this.valueArr.join(''));
+        this.$emit("input-complete", this.valueArr.join(""));
       } else nextIpt.focus();
     }
   }
@@ -63,6 +79,7 @@ export default {
       user-select: none;
       outline: none;
       text-align: center;
+      -webkit-appearance: none;
     }
   }
 }
