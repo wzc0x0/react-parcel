@@ -1,11 +1,22 @@
 <template>
   <div>
     <h1>hello vue!</h1>
-    <input type="file" name id @change="upload">
-    <button @click="abort">stop</button>
+    <input
+      type="file"
+      @change="upload"
+    >
+    <input
+      type="text"
+      placeholder="请输入"
+      v-input-enter:1,2="abort"
+    >
+    <button @click="abort(3)">stop</button>
   </div>
 </template>
 <script>
+import Vue from "vue";
+import directive from "../js/directive.js";
+Vue.use(directive);
 const qiniu = require("qiniu-js");
 const SparkMD5 = require("spark-md5");
 
@@ -67,7 +78,9 @@ export default {
         }
       });
     },
-    abort() {
+    abort(i) {
+      console.log(i);
+      console.log(2);
       // this.subscription.unsubscribe();
     }
   }
