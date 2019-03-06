@@ -8,7 +8,7 @@
     <input
       type="text"
       placeholder="请输入"
-      v-input-enter:1,2="abort"
+      v-input-enter:{a:1,b:2}.json="abort"
     >
     <button @click="abort(3)">stop</button>
   </div>
