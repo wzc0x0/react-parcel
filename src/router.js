@@ -90,6 +90,11 @@ export default new VueRouter({
                 import ('./view/CloseRefresh.vue')
         },
         {
+            path: "/virtualScroll",
+            component: () =>
+                import ('./view/VirtualScroll.vue')
+        },
+        {
             path: "/firework",
             redirect: '1',
             component: () =>
