@@ -95,6 +95,11 @@ export default new VueRouter({
                 import ('./view/VirtualScroll.vue')
         },
         {
+            path: "/readImageExif",
+            component: () =>
+                import ('./view/ReadImageExif.vue')
+        },
+        {
             path: "/firework",
             redirect: '1',
             component: () =>
