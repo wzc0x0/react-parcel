@@ -1,15 +1,8 @@
 <template>
   <div>
     <h1>hello vue!</h1>
-    <input
-      type="file"
-      @change="upload"
-    >
-    <input
-      type="text"
-      placeholder="请输入"
-      v-input-enter:{a:1,b:2}.json="abort"
-    >
+    <input type="file" @change="upload">
+    <input type="text" placeholder="请输入" v-input-enter:{a:1,b:2}.json="abort">
     <button @click="abort(3)">stop</button>
   </div>
 </template>
@@ -19,6 +12,25 @@ import directive from "../js/directive.js";
 Vue.use(directive);
 const qiniu = require("qiniu-js");
 const SparkMD5 = require("spark-md5");
+
+document.body.addEventListener("focusin", function() {
+  //软键盘弹起事件
+  var node = document.activeElement; // 当前focus的dom元素
+  console.log(node);
+  setTimeout(function() {
+    if (node) {
+      if (node.nodeName == "TEXTAREA" || node.nodeName == "INPUT") {
+        //如果是input或textarea
+        if (node.style.textShadow === "") {
+          //随便 更改个 无关紧要的样式， 让页面重绘。
+          node.style.textShadow = "rgba(0,0,0,0) 0 0 0"; //改变某个不可见样式，触发dom重绘
+        } else {
+          node.style.textShadow = "";
+        }
+      }
+    }
+  }, 1000);
+});
 
 const getFileHash = file =>
   new Promise((resolve, reject) => {
