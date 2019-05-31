@@ -1,57 +1,136 @@
 <template>
   <div
-    ref="parentElement"
     class="container"
+    v-infinite-scroll="loadMore"
+    infinite-scroll-disabled="busy"
+    infinite-scroll-distance="500"
   >
-    <ul @scroll="inspectViewport">
-      <li
-        v-for="i in lists"
-        :key="i"
-        ref="childrenElement"
-      >
-        <h1>hello world:{{i}}</h1>
-      </li>
-    </ul>
+    <recycle-scroller class="scroller" :items="lists" :min-item-size="400" page-mode>
+      <div class="wrapper" slot-scope="{item}">
+        <div class="border md:flex">
+          <div class="md:flex-shrink-0">
+            <swiper :options="swiperOption">
+              <swiper-slide>
+                <a @click="popupVisible = true;popupImageUrl = item.images.large">
+                  <img class="rounded-lg" :src="item.images.small">
+                </a>
+              </swiper-slide>
+              <swiper-slide v-for="(cast,m) in item.casts" :key="m">
+                <a @click="popupVisible = true;popupImageUrl = cast.avatars.large">
+                  <img class="rounded-lg" :src="cast.avatars.small">
+                </a>
+              </swiper-slide>
+            </swiper>
+          </div>
+          <div class="mt-4 md:mt-0 md:ml-6">
+            <div
+              class="uppercase tracking-wide text-indigo-600 font-bold"
+            >{{item.title}}（{{item.original_title}}）- {{item.durations[0]}}</div>
+            <div class="mt-2 text-orange-300 text-sm">
+              <span
+                v-for="(genre,j) in item.genres"
+                :key="j"
+              >{{genre}}{{item.genres.length - 1 > j ? '、' : ''}}</span>
+            </div>
+            <div class="mt-2 text-gray-600">
+              <span>上映时间：</span>
+              <span class="mr-2 leading-normal" v-for="(date,k) in item.pubdates" :key="k">{{date}}</span>
+            </div>
+            <p class="mt-2 text-gray-600">综合评分：{{item.rating.average}}</p>
+          </div>
+        </div>
+      </div>
+    </recycle-scroller>
+    <pop-up v-model="popupVisible" popup-transition="popup-fade">
+      <img :src="popupImageUrl">
+    </pop-up>
   </div>
 </template>
 <script>
-let arr = new Array();
+import Vue from "vue";
+import { InfiniteScroll, Popup } from "mint-ui";
+import { RecycleScroller } from "vue-virtual-scroller";
+import { swiper, swiperSlide } from "vue-awesome-swiper";
+import "swiper/dist/css/swiper.css";
+import "vue-virtual-scroller/dist/vue-virtual-scroller.css";
+Vue.use(InfiniteScroll);
+
+const randomArray = arr => {
+  let count = 10;
+  while (count--) {
+    let a = ~~(Math.random() * arr.length),
+      b = ~~(Math.random() * arr.length);
+    [arr[a], arr[b]] = [arr[b], arr[a]];
+  }
+};
+
 export default {
   data: () => ({
-    lists: []
+    lists: [],
+    busy: false,
+    swiperOption: {
+      slidesPerView: 2,
+      spaceBetween: 10,
+      freeMode: true
+    },
+    popupVisible: false,
+    popupImageUrl: null
   }),
-  created() {
-    for (let index = 0; index < 100; index++) {
-      this.lists[index] = index;
-    }
-  },
-  mounted() {
-    let parentDomPos = this.$refs["parentElement"].getBoundingClientRect(),
-      parentDomTop = parentDomPos.top,
-      parentDomBottom = parentDomPos.bottom,
-      viewportHeight = parseInt(parentDomBottom - parentDomTop);
 
-    this.$refs["childrenElement"].forEach(dom => {
-      let domPos = dom.getBoundingClientRect();
-      console.log(domPos.top, domPos.bottom);
-    });
+  components: {
+    RecycleScroller,
+    swiper,
+    swiperSlide,
+    popUp: Popup
   },
+
   methods: {
-    inspectViewport() {
-      console.log(1);
+    renderInit() {
+      return new Promise(resolve => {
+        fetch("http://192.168.75.65:3000/douban/new-movies")
+          .then(res => res.json())
+          .then(({ data }) => {
+            randomArray(data.subjects);
+            this.lists = this.lists.concat(data.subjects);
+            resolve();
+          });
+      });
+    },
+
+    loadMore() {
+      this.busy = true;
+      this.renderInit().then(res => {
+        this.busy = false;
+      });
     }
+  },
+
+  metaInfo: {
+    title: "虚拟列表"
   }
 };
 </script>
+<style lang="less">
+.mint-popup {
+  img {
+    max-width: none;
+  }
+}
+</style>
+
 <style lang="less" scoped>
 .container {
-  width: 300px;
-  height: 300px;
-  overflow-y: auto;
-  margin: 0 auto;
-  border: 1px solid #ccc;
-  h1 {
-    text-align: center;
+  padding: 10px 10px;
+  .wrapper {
+    padding-bottom: 10px;
+    .border {
+      border-radius: 10px;
+      padding: 10px;
+      border: 1px solid #e2e8f0;
+    }
+    .rounded-lg {
+      height: 210px;
+    }
   }
 }
 </style>

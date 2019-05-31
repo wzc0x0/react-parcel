@@ -1,135 +1,135 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from "vue";
+import VueRouter from "vue-router";
 
-Vue.use(VueRouter)
+Vue.use(VueRouter);
 
 export default new VueRouter({
-    mode: 'history',
+    mode: "history",
     routes: [{
-            path: '/',
-            redirect: '/upload'
+            path: "/",
+            redirect: "/upload"
         },
         {
-            path: '/upload',
+            path: "/upload",
             component: () =>
-                import ('./components/upload.vue')
+                import ("./components/upload.vue")
         },
         {
-            path: '/fullpage',
+            path: "/fullpage",
             component: () =>
-                import ('./components/fullpage.vue')
+                import ("./components/fullpage.vue")
         },
         {
-            path: '/chart',
+            path: "/chart",
             component: () =>
-                import ('./view/ChartWrapper.vue')
+                import ("./view/ChartWrapper.vue")
         },
         {
-            path: '/inputMask',
+            path: "/inputMask",
             component: () =>
-                import ('./view/InputMaskWrapper.vue')
+                import ("./view/InputMaskWrapper.vue")
         },
         {
             path: "/webWorker",
             component: () =>
-                import ('./view/WebWorker.vue')
+                import ("./view/WebWorker.vue")
         },
         {
             path: "/translate",
             component: () =>
-                import ('./view/Translate.vue')
+                import ("./view/Translate.vue")
         },
         {
             path: "/progress",
             component: () =>
-                import ('./view/Progress.vue')
+                import ("./view/Progress.vue")
         },
         {
             path: "/scratch",
             component: () =>
-                import ('./view/ScratchCanvas.vue')
-        },
-        {
-            path: "/bootstrap",
-            component: () =>
-                import ('./view/BootstrapVue.vue')
+                import ("./view/ScratchCanvas.vue")
         },
         {
             path: "/jszip",
             component: () =>
-                import ('./view/JSZip.vue')
+                import ("./view/JSZip.vue")
         },
         {
             path: "/pdfview",
             component: () =>
-                import ('./view/PdfView.vue')
+                import ("./view/PdfView.vue")
         },
         {
             path: "/qrcode",
             component: () =>
-                import ('./view/Qrcode.vue')
+                import ("./view/Qrcode.vue")
         },
         {
             path: "/drawCanvas",
             component: () =>
-                import ('./view/DrawCanvas.vue')
+                import ("./view/DrawCanvas.vue")
         },
         {
             path: "/happyNewYear",
             component: () =>
-                import ('./view/HappyNewYear.vue')
+                import ("./view/HappyNewYear.vue")
         },
         {
             path: "/instascan",
             component: () =>
-                import ('./view/Instascan.vue')
+                import ("./view/Instascan.vue")
         },
         {
             path: "/closeRefresh",
             component: () =>
-                import ('./view/CloseRefresh.vue')
+                import ("./view/CloseRefresh.vue")
         },
         {
             path: "/virtualScroll",
             component: () =>
-                import ('./view/VirtualScroll.vue')
+                import ("./view/VirtualScroll.vue")
+        },
+        {
+            path: "/simpleScroll",
+            component: () =>
+                import ("./view/SimpleScroll.vue")
         },
         {
             path: "/readImageExif",
             component: () =>
-                import ('./view/ReadImageExif.vue')
+                import ("./view/ReadImageExif.vue")
         },
         {
             path: "/firework",
-            redirect: '1',
+            redirect: "1",
             component: () =>
-                import ('./view/firework/Firework.vue'),
+                import ("./view/firework/Firework.vue"),
             children: [{
                     path: "1",
                     component: () =>
-                        import ('./view/firework/Firework1.vue')
+                        import ("./view/firework/Firework1.vue")
                 },
                 {
                     path: "2",
                     component: () =>
-                        import ('./view/firework/Firework2.vue')
+                        import ("./view/firework/Firework2.vue")
                 },
                 {
                     path: "3",
                     component: () =>
-                        import ('./view/firework/Firework3.vue')
+                        import ("./view/firework/Firework3.vue")
                 },
                 {
                     path: "4",
                     component: () =>
-                        import ('./view/firework/Firework4.vue')
+                        import ("./view/firework/Firework4.vue")
                 },
                 {
                     path: "particle",
                     component: () =>
-                        import ('./view/firework/Particle.vue')
+                        import ("./view/firework/Particle.vue")
                 }
             ]
         }
     ]
-})
+});
