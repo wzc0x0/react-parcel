@@ -100,6 +100,41 @@ export default new VueRouter({
                 import ("./view/ReadImageExif.vue")
         },
         {
+            path: "/debounce",
+            component: () =>
+                import ("./view/Debounce.vue")
+        },
+        {
+            path: "/hammer",
+            component: () =>
+                import ("./view/HammerView.vue")
+        },
+        {
+            path: "/xgPlayer",
+            component: () =>
+                import ("./view/XgPlayer.vue")
+        },
+        {
+            path: "/bubbleTop",
+            component: () =>
+                import ("./view/BubbleTop.vue")
+        },
+        {
+            path: "/walkMan",
+            component: () =>
+                import ("./view/WalkMan.vue")
+        },
+        {
+            path: "/ocr",
+            component: () =>
+                import ("./view/Ocr.vue")
+        },
+        {
+            path: "/lottie",
+            component: () =>
+                import ("./view/Lottie.vue")
+        },
+        {
             path: "/firework",
             redirect: "1",
             component: () =>

@@ -1,8 +1,8 @@
 <template>
   <div>
     <h1>hello vue!</h1>
-    <input type="file" @change="upload">
-    <input type="text" placeholder="请输入" v-input-enter:{a:1,b:2}.json="abort">
+    <input type="file" @change="upload" accept="image/*" capture="camera" />
+    <input type="text" placeholder="请输入" v-input-enter:{a:1,b:2}.json="abort" />
     <button @click="abort(3)">stop</button>
   </div>
 </template>

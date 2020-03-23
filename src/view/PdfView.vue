@@ -11,13 +11,10 @@
 //   "http://192.168.75.96:8081/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E9%A2%98%E6%95%B4%E7%90%86.pdf";
 
 const url =
-  "https://file.jinhui120.com/dev/selling/upload/20181030/feff157172b14cfc84346f3d05da8ba6/2018%202H%E5%B8%82%E5%9C%BA%E9%83%A8%E9%A1%B9%E7%9B%AE%E7%AD%96%E5%88%92%E6%96%B9%E6%A1%88_180702.pdf";
-
-// const PDFJS = require("pdfjs-dist/build/pdf.min");
+  "http://test001.pnlyy.com/user/contract/fb86e08a27c52bf759ac4b2ac993fb5e.pdf";
 import PDFJS from "pdfjs-dist";
 PDFJS.GlobalWorkerOptions.workerSrc =
-  "https://unpkg.com/pdfjs-dist@2.0.943/build/pdf.worker.js";
-
+  "http://192.168.43.169:8081/pdf.worker.js";
 export default {
   data() {
     return {
@@ -68,8 +65,8 @@ export default {
   height: 100%;
 }
 #pdf-canvas {
-  width: 100%;
-  // height: 90vh;
+  width: 100vw;
+  height: 90vh;
 }
 #loading {
   width: auto;
