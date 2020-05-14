@@ -1,8 +1,17 @@
 <template>
   <div>
     <h1>hello vue!</h1>
-    <input type="file" @change="upload" accept="image/*" capture="camera" />
-    <input type="text" placeholder="请输入" v-input-enter:{a:1,b:2}.json="abort" />
+    <input
+      type="file"
+      @change="upload"
+      accept="video/* | image/*"
+      capture="camera"
+    />
+    <input
+      type="text"
+      placeholder="请输入"
+      v-input-enter:{a:1,b:2}.json="abort"
+    />
     <button @click="abort(3)">stop</button>
   </div>
 </template>
@@ -68,7 +77,7 @@ export default {
     };
   },
   methods: {
-    async upload(e) {
+    upload(e) {
       let input = e.target || e.srcElement,
         file = input.files[0],
         config = { useCdnDomain: true },
@@ -77,6 +86,8 @@ export default {
         token =
           "tM193uNBWVubyf1od06tTI50euAd31tOOg3GXsA4:Un6QHl4ib8KO7m1PtP9MP6CZE9E=:eyJzY29wZSI6InRlc3QwMDEiLCJkZWFkbGluZSI6MTU0NDAwNTI2Nn0=",
         observable = qiniu.upload(file, key, token, putExtra, config);
+      console.log(file);
+      return;
 
       this.subscription = observable.subscribe({
         next({ total }) {
@@ -98,5 +109,4 @@ export default {
   }
 };
 </script>
-<style scoped>
-</style>
+<style scoped></style>

@@ -135,6 +135,16 @@ export default new VueRouter({
                 import ("./view/Lottie.vue")
         },
         {
+            path: "/xlsx",
+            component: () =>
+                import ("./view/Xlsx.vue")
+        },
+        {
+            path: "/puzzleCanvas",
+            component: () =>
+                import ("./view/PuzzleCanvas.vue")
+        },
+        {
             path: "/firework",
             redirect: "1",
             component: () =>
